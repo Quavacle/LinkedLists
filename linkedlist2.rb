@@ -7,27 +7,9 @@ class LinkedListNode
   end
 end
 
-class Stack
-  attr_reader :data
-
-  def initialize
-    @data = nil
-  end
-
-  def push(value)
-    @data = LinkedListNode.new(value, @data)
-  end
-
-  def pop
-    value = @data.value
-    @data = @data.next_node
-    return value
-  end
-end
-
 def reverse_pointer(node, previous = nil)
   #Check existence of next node
-  if node.next_node != nil 
+  if node.next_node != nil
     #Call the next node, passing current node's location
     reverse_pointer(node.next_node, node)
     #Redefine the node's next node call to the previous value
@@ -35,7 +17,7 @@ def reverse_pointer(node, previous = nil)
   else
     #When next node is nil, simply set the current nodes next to prior node
     node.next_node = previous
-    return
+    return node.value
   end
 
 end
@@ -86,8 +68,9 @@ print_values(reverse)
 puts ""
 puts "Reversed pointers (No stack):"
 puts "---------------"
+
 reverse_pointer(node4)
 print_values(node1)
-
-
-
+puts "Head of new list/Tail of unaltered list"
+puts "---------------"
+puts reverse_pointer(node4)
